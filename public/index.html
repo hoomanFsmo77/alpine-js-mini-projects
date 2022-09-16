@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Alpine mini projects</title>
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="welcome to my first website">
+    <meta name="keyword" content="HTML,CSS,PHP,developer">
+    <script src="https://kit.fontawesome.com/04f2094a89.js" crossorigin="anonymous"></script>
+<!--    //////// alpine js-->
+    <script defer src="../node_modules/@alpinejs/collapse/dist/cdn.min.js"></script>
+    <script defer  src="../node_modules/alpinejs/dist/cdn.min.js"></script>
+<!--    ////// bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+<section x-data="{show:false}" id="modal" class="bg-info d-flex justify-content-center align-items-center flex-column gap-3">
+    <h1 class="text-center fw-bold ">Modal</h1>
+    <button @click="show=true" class="btn btn-dark">click to open modal!</button>
+    <div :class="show && 'is-visible'"  class="overlay"></div>
+
+    <div :class="show && 'is-visible'" x-cloak class="h-modal p-3 d-flex flex-row-reverse gap-1">
+        <i @click="show=false" class="bi bi-x-circle fs-4"></i>
+        <div>
+            <p class="lh-base text-center ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi aperiam beatae cumque dolor earum et eum excepturi necessiAccusamus delectus eos in rerum voluptate?</p>
+            <p class="lh-base text-center ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi aperiam beatae cumque dolor earum et eum excepturi neceseos in rerum voluptate?</p>
+        </div>
+    </div>
+</section>
+
+<section id="dropdown" class="bg-light">
+    <nav class="px-2">
+        <div x-data="{open:true}" x-init="matchMedia('(max-width:996px)').matches ? open=false : open=true" class="container  d-flex justify-content-between position-relative">
+            <a href="#" class="navbar-brand text-white fs-2 fw-semibold">Hooman.ir</a>
+            <i @click="open=!open"  class="bi bi-list hamburger_menu"></i>
+            <ul  x-show="open" x-collapse  class="d-flex gap-1 align-items-center m-0 navbar-items">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li x-data="dropdown" x-bind="trigger"  class="position-relative">
+                    <a href="#" >
+                        Services
+                        <i class="bi bi-caret-down-fill ms-1"></i>
+                    </a>
+                    <ul x-transition.opacity.scale.origin.top.duration.300ms x-bind="makeAppear" class="sub_dropdown  position-absolute flex-column">
+                        <li>
+                            <a href="#">Web Design</a>
+                        </li>
+                        <li>
+                            <a href="#">Web Development</a>
+                        </li>
+                        <li>
+                            <a href="#">Graphic Design</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Pricing</a>
+                </li>
+                <li x-data="dropdown" x-bind="trigger"  class="position-relative">
+                    <a href="#">Portfolio
+                        <i class="bi bi-caret-down-fill ms-1 text-white"></i>
+                    </a>
+
+                    <ul x-bind="makeAppear" x-transition.opacity.scale.origin.top.duration.300ms class="sub_dropdown  position-absolute flex-column">
+                        <li>
+                            <a href="#">Web Design</a>
+                        </li>
+                        <li>
+                            <a href="#">Web Development</a>
+                        </li>
+                        <li>
+                            <a href="#">Graphic Design</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>DropDown</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, asperiores, atque corporis dolores esse est, eum incidunt iusto neque nisi numquam odit quod repellat saepe unde ut vel voluptate voluptatum!</p>
+    </div>
+
+</section>
+
+
+<section id="tab-bar" class="bg-secondary d-flex align-items-center justify-content-center">
+    <div x-data="{whichTab:1}" class="tab">
+        <h1 class="text-center fw-bold">Tab</h1>
+        <nav>
+            <ul class="d-flex gap-3">
+                <li  @click="whichTab=1" :class="whichTab===1 && 'active'">
+                    React
+                </li>
+                <li @click="whichTab=2" :class="whichTab===2 && 'active'">
+                    Angular
+                </li>
+                <li @click="whichTab=3" :class="whichTab===3 && 'active'">
+                    Ember
+                </li>
+                <li @click="whichTab=4" :class="whichTab===4 && 'active'">
+                    Vue.JS
+                </li>
+            </ul>
+        </nav>
+        <div class="description p-2">
+            <div  x-transition x-show="whichTab===1" :class="whichTab===1 && 'd-block'">
+                <h3 class="fw-bold">React</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus distinctio eos est et excepturi incidunt iure libero nam nihil odio omnis ratione, unde. Dolorem illo incidunt odit pariatur rem.</p>
+            </div>
+            <div  x-transition x-show="whichTab===2" :class="whichTab===2 && 'd-block'">
+                <h3 class="fw-bold">Angular</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus distinctio eos est et excepturi incidunt iure libero nam nihil odio omnis ratione, unde. Dolorem illo incidunt odit pariatur rem.</p>
+            </div>
+            <div  x-transition x-show="whichTab===3" :class="whichTab===3 && 'd-block'">
+                <h3 class="fw-bold">Ember</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus distinctio eos est et excepturi incidunt iure libero nam nihil odio omnis ratione, unde. Dolorem illo incidunt odit pariatur rem.</p>
+            </div>
+            <div  x-transition x-show="whichTab===4" :class="whichTab===4 && 'd-block'">
+                <h3 class="fw-bold">Vue.JS</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus distinctio eos est et excepturi incidunt iure libero nam nihil odio omnis ratione, unde. Dolorem illo incidunt odit pariatur rem.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="accordion" class="bg-primary ">
+    <div class="container pt-5 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="text-center fw-bold text-white">Accordion</h1>
+        <div x-data="{whichCollapse:0}" class="accordion_tab w-50">
+            <div  class="accordion-item" >
+                <h4 @click="whichCollapse=1" class="text-white d-flex justify-content-between fw-semibold border-bottom m-0 px-1 py-2">
+                    What is the return policy?
+                    <i class="bi  text-white" :class="whichCollapse===1 ? 'bi-dash-circle-fill' : 'bi-plus-circle-fill'"></i>
+                </h4>
+                <div :class="whichCollapse===1 && 'open'"  class="" >
+                    <p class="text-white m-0 p-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem dolores eius error et eum libero magnam quae vel. A adipisci ducimus eaque hic non odio officia qui tempore vero!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem dolores eius error et eum libero magnam quae vel. A adipisci ducimus eaque hic non odio officia qui tempore vero!
+
+                    </p>
+                </div>
+
+            </div>
+            <div  class="accordion-item">
+                <h4 @click="whichCollapse=2" class="text-white d-flex justify-content-between fw-semibold border-bottom m-0 px-1 py-2">
+                    How can I apply the coupon?
+                    <i class="bi  text-white" :class="whichCollapse===2 ? 'bi-dash-circle-fill' : 'bi-plus-circle-fill'"></i>
+                </h4>
+                <div :class="whichCollapse===2 && 'open'"  class="">
+                    <p class="text-white m-0 p-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem dolores eius error et eum libero magnam quae vel. A adipisci ducimus eaque hic non odio officia qui tempore vero!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem dolores eius error et eum libero magnam quae vel. A adipisci ducimus eaque hic non odio officia qui tempore vero!
+                    </p>
+                </div>
+            </div>
+            <div  class="accordion-item">
+                <h4 @click="whichCollapse=3" class="text-white d-flex justify-content-between fw-semibold border-bottom m-0 px-1 py-2">
+                    How do I become a member?
+                    <i class="bi  text-white" :class="whichCollapse===3 ? 'bi-dash-circle-fill' : 'bi-plus-circle-fill'"></i>
+                </h4>
+                <div :class="whichCollapse===3 && 'open'"  class="">
+                    <p class="text-white m-0 p-3">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem dolores eius error et eum libero magnam quae vel. A adipisci ducimus eaque hic non odio officia qui tempore vero!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem dolores eius error et eum libero magnam quae vel. A adipisci ducimus eaque hic non odio officia qui tempore vero!
+                    </p>
+                </div>
+
+                </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="carousel" class="bg-light">
+    <div class="container pt-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-10 position-relative" x-data="carousel">
+                <div class="previous_btn" @click="whichImage===0 ? whichImage=images.length : whichImage--">
+                    <i class="fa-solid fa-circle-chevron-left position-relative"></i>
+                </div>
+                <template x-for="(item,idx) in images" >
+                    <section class="carousel_item position-relative" x-transition x-show="idx===whichImage" :class="idx!==whichImage && 'd-none'">
+                        <img :src="item.url" alt="">
+                        <div class="position-absolute carousel-content">
+                            <h4 class="text-center text-white mb-0 fw-semibold" x-text="item.title"></h4>
+                            <h5 class="text-white text-center fw-semibold" x-text="item.description"></h5>
+                            <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+                                <span @click="whichImage=0" :class="whichImage===0 && 'active'" class="circle "></span>
+                                <span @click="whichImage=1" :class="whichImage===1 && 'active'" class="circle"></span>
+                                <span @click="whichImage=2" :class="whichImage===2 && 'active'" class="circle"></span>
+                            </div>
+                        </div>
+                    </section>
+                </template>
+
+
+                <div class="next_btn" @click="whichImage===2 ? whichImage=0 : whichImage++">
+                    <i class="fa-solid fa-circle-chevron-right position-relative"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="multi-select" class="bg-light d-flex justify-content-center align-items-center">
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="javascript/App.js"></script>
+</body>
+</html>
