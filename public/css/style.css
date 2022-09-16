@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border-collapse: collapse;
 }
 img {
     width: 100%;
@@ -250,4 +251,40 @@ a:hover {
 .circle.active{
     background-color: white;
     border: none!important;
+}
+#multi-select .select_box{
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: white;
+}
+.is-Open{
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+#multi-select .select_option{
+    width: 100%;
+    background: white;
+    border-top: none!important;
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+#multi-select .select_option li {
+    padding: 0.4rem 0.5rem;
+    cursor: pointer;
+    transition: all 150ms linear;
+}
+#multi-select .select_option li:hover{
+    background-color: rgba(174,115,214,0.84);
+    color: white;
+}
+.tag-item{
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background: rgba(174,115,214,0.84);
+    border-radius: 12px;
+    color: white;
+    margin: 0 0.3rem 0.3rem 0.3rem;
 }

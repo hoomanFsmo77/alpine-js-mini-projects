@@ -217,8 +217,24 @@
 </section>
 
 
-<section id="multi-select" class="bg-light d-flex justify-content-center align-items-center">
-
+<section id="multi-select" class="bg-light d-flex justify-content-center align-items-center flex-column">
+    <h1 class="text-center fw-semibold mb-4">Multi Select</h1>
+    <div x-data="select">
+        <span x-text="selectedInteger"></span>
+        <div @click.outside="show=false" @click="show=!show" :class="show && 'is-Open'" class="select_box d-flex justify-content-between align-items-center p-2" >
+            <input x-model="selectedInteger" type="text" class="visually-hidden">
+            <span :class="counter===0 ? 'd-inline-block' : 'd-none' " class="text-muted fs-5 ">Select Tag</span>
+            <div x-ref="tagContainer"></div>
+            <i class="bi bi-caret-down-fill"></i>
+        </div>
+        <div x-show="show" x-transition class="select_option py-2">
+            <ul class="m-0" x-ref="optionContainer">
+                <template x-for="tag in tags">
+                    <li @click="addTags($el,$refs.tagContainer)" x-text="tag"></li>
+                </template>
+            </ul>
+        </div>
+    </div>
 </section>
 
 
