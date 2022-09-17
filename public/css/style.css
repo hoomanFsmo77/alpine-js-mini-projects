@@ -42,7 +42,7 @@ a {
 a:hover {
 
 }
-#modal,#dropdown,#tab-bar,#accordion,#carousel,#multi-select{
+#modal,#dropdown,#tab-bar,#accordion,#carousel,#multi-select,#api{
     width: 100%;
     height: 100vh;
 }
@@ -287,4 +287,14 @@ a:hover {
     border-radius: 12px;
     color: white;
     margin: 0 0.3rem 0.3rem 0.3rem;
+}
+#api img{
+    width: 20%;
+    border-radius: 50%;
+}
+#api th,#api td{
+    text-align: center;
+}
+#api li{
+    cursor: pointer;
 }

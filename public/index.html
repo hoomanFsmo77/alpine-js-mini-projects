@@ -237,7 +237,64 @@
 </section>
 
 
+<section id="api" class="bg-light">
+    <div class="container pt-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-10 position-relative" x-data="api">
+                <h2 class="text-start fw-semibold">Users List:</h2>
 
+                <div :class="isFetched ? 'd-none' : 'd-block'" class="spinner-border position-absolute start-50 bottom-50" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+
+                <table class="table table-striped table-hover mb-3 " :class="isFetched ? 'd-table' : 'd-none'">
+                    <thead>
+                    <tr>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <template x-for="user in usersList">
+                        <tr>
+                            <th scope="row" ><img :src="user.avatar" alt=""></th>
+                            <td x-text="user.id"></td>
+                            <td x-text="user.first_name"></td>
+                            <td x-text="user.last_name"></td>
+                            <td x-text="user.email"></td>
+                        </tr>
+                    </template>
+
+                    </tbody>
+                </table>
+
+                <nav aria-label="Page navigation example" >
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" @click="page=page-1;getData();selected=page">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <template x-for="item  in totalPage">
+                            <li class="page-item page-link d-flex align-items-center" @click="page=item;getData();selected=item" :class="selected===item && 'active'" x-text="item">1</li>
+                        </template>
+                        <li class="page-item" @click="page=page+1;getData();selected=page">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+    </div>
+</section>
 
 
 
